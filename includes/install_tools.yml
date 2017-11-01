@@ -1,0 +1,19 @@
+---
+- name: install administration tools
+  pacman: name={{ item }} state=present
+  with_items:
+    - htop
+    - lsof
+    - rsync
+    - unzip
+    - unrar
+    - p7zip
+    - wget
+    - python
+    - lxappearance
+    - ack
+    - glances
+    - speedcrunch
+    - zathura
+    - network-manager-applet
+...

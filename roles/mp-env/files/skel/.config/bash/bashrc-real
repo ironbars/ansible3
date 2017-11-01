@@ -1,0 +1,138 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, dont do anything
+[[ $- != *i* ]] && return
+
+# Shell behavior variables
+# ----------------------------------------------------------------------------
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s dotglob
+shopt -s expand_aliases
+shopt -s extglob
+shopt -s histappend
+shopt -s hostcomplete
+shopt -s nocaseglob
+
+# Environment variables
+# ----------------------------------------------------------------------------
+export HISTSIZE=10000
+export HISTFILESIZE={HISTSIZE}
+export HISTCONTROL=ignoreboth
+export EDITOR=vim
+export PATH=$PATH:$HOME/bin
+export INPUTRC=$HOME/.config/bash/inputrc
+#export LS_COLORS=$LS_COLORS:'di=0;35:'
+
+# Aliases
+# ----------------------------------------------------------------------------
+#alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+#alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+#alias la='ls -a --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ls='ls --group-directories-first --time-style=long-iso --color=auto -F'
+alias ll='ls -lh --group-directories-first --time-style=long-iso --color=auto -F'
+#alias la='ls -a --group-directories-first --time-style=long-iso --color=auto -F'
+alias la='ls -a --group-directories-first --time-style=long-iso -F'
+alias grep='grep --color=tty -d skip'
+alias cp='cp -i'
+alias df='df -h'
+alias free='free -h'
+alias bashrc='vim ~/.config/bash/bashrc-real'
+alias vimrc='vim ~/.config/vim/vimrc'
+alias sb='source ~/.config/bash/bashrc-real'
+alias cls='echo "Use Ctrl+L!!!"'
+
+# Arch (Antergos) specific
+# -------------
+alias add='sudo pacman -S'
+alias remove='sudo pacman -Rsn'
+alias off='poweroff'
+alias start='sudo systemctl start'
+alias restart='sudo systemctl restart'
+alias stop='sudo systemctl stop'
+alias enable='sudo systemctl enable'
+alias disable='sudo systemctl disable'
+
+# Mac specific
+# ------------
+#alias add='brew install'
+#alias remove='brew uninstall'
+
+# Void specific
+# -------------
+#alias add='sudo xbps-install -S'
+#alias remove='sudo xbps-remove -R'
+#alias search='xbps-query -R -s'
+#alias off='sudo poweroff'
+
+
+# Functions
+# ----------------------------------------------------------------------------
+# ex - archive extractor
+# usage: ex <archive>
+ex ()
+{
+	if [ -f $1 ]; then
+		case $1 in
+			*.tar.bz2)	tar xjf $1;;
+			*.tar.gz)	tar xzf $1;;
+			*.bz2)		bunzip2 $1;;
+			*.rar)		unrar x $1;;
+			*.gz)		gunzip $1;;
+			*.tar)		tar xf $1;;
+			*.tbz2)		tar xjf $1;;
+			*.tgz)		tar xzf $1;;
+			*.zip)		unzip $1;;
+			*.Z)		uncompress $1;;
+			*.7z)		7z x $1;;
+			*)			echo "'$1' cannot be extracted via ex()";;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+
+# csource - compile and execute C source on the fly
+# usage: csource <source_file>
+csource ()
+{
+	if [ -z "$1" ]; then
+		echo "Missing operand";
+		return 1;
+	fi
+	local OUTPUT_PATH=$(echo "$1" | sed -e "s/^.*\/\|^/\/tmp\//" | sed -e "s/\.c$//");
+	gcc "$1" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
+	rm "$OUTPUT_PATH";
+	return 0;
+}
+
+# cl - cd and ls in one command
+# usage: cl <directory>
+cl ()
+{
+	DIR=$1
+	if [[ -z "$DIR" ]]; then
+		DIR=$HOME
+	fi
+	if [[ -d "$DIR" || "$DIR" == "-" ]]; then
+		cd "$DIR"
+		ls
+	else
+		echo "bash: cl: '$DIR': Directory not found"
+	fi
+}
+
+
+# Misc.
+# ----------------------------------------------------------------------------
+# Turn on 256 color support
+if [ "x$TERM" == "xxterm" ]; then
+	export TERM="xterm-256color"
+fi
+
+# Prompt
+PS1='\[\e[1;36m\][\u@\h \W]\$\[\e[0m\] '
+

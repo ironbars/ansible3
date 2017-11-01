@@ -1,0 +1,17 @@
+---
+# Tasks file for mp-env role
+- name: copy skeleton directory
+  copy:
+    src: skel/
+    dest: /etc/skel/
+    owner: root
+    group: root
+
+- name: copy root bashrc
+  copy:
+    src: bashrc-root
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+...

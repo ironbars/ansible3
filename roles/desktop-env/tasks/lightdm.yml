@@ -1,0 +1,33 @@
+---
+- name: install lightdm
+  pacman: name=lightdm state=present
+
+- name: install lightdm greeter
+  pacman: name=lightdm-gtk-greeter state=present
+
+- name: copy lightdm Xsession script
+  copy:
+    src: lightdm/Xsession
+    dest: /etc/lightdm/Xsession
+    owner: root
+    group: root
+    mode: 0755
+
+- name: copy other lightdm configs
+  copy:
+    src: lightdm/{{ item }}
+    dest: /etc/lightdm/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - lightdm.conf
+    - lightdm-gtk-greeter.conf
+    - users.conf
+    - keys.conf
+
+- name: enable display manager service
+  systemd:
+    name: lightdm.service
+    enabled: yes
+...

@@ -1,0 +1,16 @@
+---
+- name: install battery monitor
+  pacman: name=cbatticon state=present
+
+- name: install web browser
+  pacman: name=chromium state=present
+
+- name: install calculator
+  pacman: name=speedcrunch state=present
+
+- name: install terminal
+  pacman: name=lxterminal state=present
+
+- name: install viewer
+  pacman: name=zathura state=present
+...

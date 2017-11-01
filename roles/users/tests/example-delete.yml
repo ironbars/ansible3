@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ansible-role-users
+      users_deleted:
+        - name: foobar1
+        - name: foobar2
+        - name: foobar3

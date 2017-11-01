@@ -1,0 +1,12 @@
+---
+- name: install tint2
+  pacman: name=tint2 state=present
+
+- name: copy tint2 configs
+  copy:
+    src: tint2rc
+    dest: /etc/xdg/tint2/tint2rc
+    owner: root
+    group: root
+    mode: 0644
+...

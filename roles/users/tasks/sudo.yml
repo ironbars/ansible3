@@ -1,0 +1,31 @@
+---
+- block:
+  - name: is sudo present
+    stat: path=/etc/sudoers
+    register: sudoers
+    become: false
+
+  - name: install sudo
+    package:
+      name: "{{ users_sudo_pkg_name }}"
+      state: present
+    args:
+      update_cache: true
+    when: not sudoers.stat.exists
+
+  - name: include sudoers.d
+    lineinfile:
+      dest: /etc/sudoers
+      regexp: '^#includedir '
+      line: '#includedir /etc/sudoers.d'
+      validate: visudo -cf %s
+
+  - name: setup sudo
+    template:
+      src: 95-ansible-users.j2
+      dest: /etc/sudoers.d/95-ansible-users
+      mode: 0440
+      validate: visudo -cf %s
+
+  become: true
+  tags: sudo

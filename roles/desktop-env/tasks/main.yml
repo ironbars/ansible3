@@ -1,0 +1,14 @@
+---
+# Tasks file for desktop-env role
+- name: install window manager
+  import_playbook: openbox.yml
+
+- name: install display manager
+  import_playbook: lightdm.yml
+
+- name: install panel
+  import_playbook: tint2.yml
+
+- name: install other OS components
+  import_playbook: os_components.yml
+...

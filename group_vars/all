@@ -7,5 +7,6 @@ users:
   - name: mpatton
     primary_group: users
     groups: [ 'wheel', 'network', 'video' ]
+    password: $6$LYxFySWmZ.4VOB35$l5s2ASVG0m5zchtjiXoUNaBBeT.uwXfSjCT1cNy5cNFFWzZjpjWC4QSl5ZK9DCNiAzFEPCihTxVM6De/Pb3wH0
     sudo: ALL=(ALL) ALL
 ...

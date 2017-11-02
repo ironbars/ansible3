@@ -2,16 +2,18 @@
 # Full playbook
 - hosts: all
   tasks:
-    - include: includes/install_xorg.yml
+    - import_tasks: imports/network_setup.yml
+      tags: ['network_setup', 'all']
+    - import_tasks: imports/install_xorg.yml
       tags: ['install_xorg', 'all']
-    - include: includes/install_tools.yml
+    - import_tasks: imports/install_tools.yml
       tags: ['install_tools', 'all']
-    - include: includes/install_fonts.yml
+    - import_tasks: imports/install_fonts.yml
       tags: ['install_fonts', 'all']
   roles:
     - { role: mp-env, tags: ['mp-env', 'all'] }
     - { role: users, tags: ['users', 'all'] }
-    - { role: desktop-env, tags: ['desktop-evn', 'all'] }
+    - { role: desktop-env, tags: ['desktop-env', 'all'] }
 
 - hosts: virtual
   roles:

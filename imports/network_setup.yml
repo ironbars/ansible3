@@ -5,8 +5,6 @@
 
 - name: install NetworkManager applet
   pacman: name=network-manager-applet state=present
-  when: ( system_type == "gen" ) or
-        ( system_type == "hybrid" )
 
 - name: disable any existing networking service
   service:

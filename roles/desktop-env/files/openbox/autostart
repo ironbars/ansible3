@@ -2,8 +2,8 @@
 #volumeicon &
 #compton --config ~/.config/compton.conf --shadow-exclude 'n:a:Conky' -b &
 tint2 &
-cbatticon &
 nm-applet &
+cbatticon &
 xsetroot -solid "#222222"
 #plank &
 #dropbox &

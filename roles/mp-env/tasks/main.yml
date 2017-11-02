@@ -7,6 +7,14 @@
     owner: root
     group: root
 
+- name: copy root bash profile
+  copy:
+    src: bash-profile-root
+    dest: /root/.bash_profile
+    owner: root
+    group: root
+    mode: 0644
+
 - name: copy root bashrc
   copy:
     src: bashrc-root

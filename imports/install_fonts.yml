@@ -6,4 +6,6 @@
     - terminus-font
     - adobe-source-code-pro-fonts
     - adobe-source-sans-pro-fonts
+    - ttf-dejavu
+    - ttf-inconsolata
 ...

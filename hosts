@@ -3,3 +3,4 @@
 [amd-graphics]
 
 [virtual]
+localhost ansible_connection=local

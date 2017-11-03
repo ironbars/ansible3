@@ -2,3 +2,4 @@ cower
 vim-pathogen
 launch-cmd
 cbatticon-gtk2
+vim-airline

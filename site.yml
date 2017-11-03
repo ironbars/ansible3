@@ -1,7 +1,7 @@
 ---
 # Full playbook
 - hosts: all
-  tasks:
+  pre_tasks:
     - import_tasks: imports/network_setup.yml
       tags: ['network_setup', 'all']
     - import_tasks: imports/install_xorg.yml

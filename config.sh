@@ -8,4 +8,4 @@ timedatectl set-timezone "America/Detroit"
 sed -ie 's/^#NTP=/NTP=pool\.ntp\.org/g' /etc/systemd/timesyncd.conf && rm /etc/systemd/timesyncd.confe
 timedatectl set-ntp true
 
-ansible-playbook /etc/ansible/site.yml
+ansible-playbook /etc/ansible/site.yml && reboot

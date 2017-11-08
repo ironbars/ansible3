@@ -1,0 +1,10 @@
+[Unit]
+Description=Build Arch Linux machine
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/etc/ansible/ansible-build.sh
+
+[Install]
+WantedBy=multi-user.target

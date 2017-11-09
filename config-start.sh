@@ -23,7 +23,7 @@ cat << EOF > /boot/loader/entries/arch.conf
 title        Arch Linux
 linux        /vmlinuz-linux
 initrd       /initramfs-linux.img
-options      root=PARTUUID=$(lsblk -o MOUNTPOINT,UUID | awk '$1 ~ /^\/$/ {print $2}') rw
+options      root=PARTUUID=$(cat /etc/fstab | grep -v "#" | awk '$2 ~ /^\/$/ {print $1}' | cut -f2 -d"=") rw
 EOF
 
 # Prepare post-reboot config script

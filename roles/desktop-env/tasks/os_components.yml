@@ -11,6 +11,9 @@
 - name: install terminal
   pacman: name=lxterminal state=present
 
-- name: install viewer
+- name: install pdf viewer
   pacman: name=zathura state=present
+
+- name: install image viewer
+  pacman: name=imv state=present
 ...

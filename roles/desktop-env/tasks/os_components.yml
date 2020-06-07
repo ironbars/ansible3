@@ -1,19 +1,31 @@
 ---
 - name: install battery monitor
-  pacman: name=cbatticon state=present
+  pacman:
+    name: cbatticon
+    state: present
 
 - name: install web browser
-  pacman: name=chromium state=present
+  pacman:
+    name: chromium
+    state: present
 
 - name: install calculator
-  pacman: name=speedcrunch state=present
+  pacman: 
+    name: speedcrunch 
+    state: present
 
 - name: install terminal
-  pacman: name=lxterminal state=present
+  pacman: 
+    name: lxterminal
+    state: present
 
 - name: install pdf viewer
-  pacman: name=zathura state=present
+  pacman:
+    name: zathura
+    state: present
 
 - name: install image viewer
-  pacman: name=imv state=present
+  pacman:
+    name: imv
+    state: present
 ...

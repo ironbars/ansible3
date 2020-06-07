@@ -1,11 +1,17 @@
 ---
-- name: install xorg packages
-  pacman: name={{ item }} state=present
-  with_items:
+- vars:
+  xorg_packages:
     - xorg-server
     - xorg-xsetroot
- 
+
+- name: install xorg packages
+  pacman:
+    name: [ 'xorg-server', 'xorg-xsetroot' ]
+    state: present
+
 - name: install appropriate video driver
-  pacman: name={{ graphics_driver }} state=present
+  pacman:
+    name: "{{ graphics_driver }}"
+    state: present
   when: "'virtual' not in group_names"
 ...

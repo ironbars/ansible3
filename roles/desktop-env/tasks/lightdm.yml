@@ -1,9 +1,13 @@
 ---
 - name: install lightdm
-  pacman: name=lightdm state=present
+  pacman: 
+    name: lightdm
+    state: present
 
 - name: install lightdm greeter
-  pacman: name=lightdm-gtk-greeter state=present
+  pacman:
+    name: lightdm-gtk-greeter
+    state: present
 
 - name: copy lightdm Xsession script
   copy:

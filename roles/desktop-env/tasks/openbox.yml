@@ -1,6 +1,8 @@
 ---
 - name: install openbox
-  pacman: name=openbox state=present
+  pacman: 
+    name: openbox
+    state: present
 
 - name: copy openbox autostart script
   copy:
@@ -22,8 +24,6 @@
     - menu.xml
 
 - name: install openbox utilities
-  pacman: name={{ item }} state=present
-  with_items:
-    - obconf
-    - oblogout
-...
+  pacman: 
+    name: [ 'obconf', 'oblogout']
+    state: present

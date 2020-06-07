@@ -1,11 +1,15 @@
 ---
 # Fonts tasks
-- name: install fonts
-  pacman: name={{ item }} state=present
-  with_items:
+- vars:
+  fonts:
     - terminus-font
     - adobe-source-code-pro-fonts
     - adobe-source-sans-pro-fonts
     - ttf-dejavu
     - ttf-inconsolata
+    
+- name: install fonts
+  pacman: 
+    name: "{{ fonts }}"
+    state: present
 ...

@@ -1,6 +1,8 @@
 ---
 - name: install tint2
-  pacman: name=tint2 state=present
+  pacman:
+    name: tint2
+    state: present
 
 - name: copy tint2 configs
   copy:
